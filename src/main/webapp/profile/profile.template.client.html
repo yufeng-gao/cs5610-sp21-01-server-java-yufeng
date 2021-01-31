@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"
+          name="viewport"
+          content="width=device-width,initial-scale=1">
+    <title>Profile</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./profile.style.client.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            Profile
+        </h1>
+        <div class="alert alert-success" role="alert">
+            Profile updated
+        </div>
+        <form>
+            <div class="form-group row">
+                <label for="username"
+                       class="col-sm-2 col-form-label">
+                    Username
+                </label>
+                <div class="col-sm-10">
+                    <input class="form-control"
+                           readonly
+                           id="username"
+                           value="John">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="phone"
+                       class="col-sm-2 col-form-label"/>
+                    Phone
+                </label>
+                <div class="col-sm-10">
+                    <input class="form-control"
+                           id="phone"
+                           type="tel"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email"
+                       class="col-sm-2 col-form-label"/>
+                Email
+                </label>
+                <div class="col-sm-10">
+                    <input class="form-control"
+                           id="email"
+                           type="email"
+                           title="Please enter a valid email"
+                           placeholder="alice@wonderland"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="role"
+                       class="col-sm-2 col-form-label"/>
+                Role
+                </label>
+                <div class="col-sm-10">
+                    <select class="form-control"
+                            id="role">
+                        <option>Faculty</option>
+                        <option>Student</option>
+                        <option>Staff</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dob"
+                       class="col-sm-2 col-form-label"/>
+                Date of Birth
+                </label>
+                <div class="col-sm-10">
+                    <input class="form-control"
+                           id="dob"
+                           type="date"
+                           title="Please enter your Date of Birth"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <a href="#">
+                        <button type="button"
+                                class="btn btn-success btn-block">
+                            Update</button>
+                    </a>
+                    <br/>
+                    <a href="../index.html">
+                        <button type="button"
+                                class="btn btn-danger btn-block">
+                            Logout
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
