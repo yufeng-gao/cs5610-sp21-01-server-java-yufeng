@@ -1,0 +1,12 @@
+.wbdv-sticky-nav-bar{
+    display:inline;
+    background-color:lightgreen;
+    padding:10px;
+    position:fixed;
+    width: 100%;
+    z-index:1;
+}
+
+.wbdv-padding-nav-bar{
+    padding-top:100px;
+}
