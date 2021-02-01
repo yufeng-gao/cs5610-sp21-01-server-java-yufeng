@@ -1,0 +1,17 @@
+.wbdv-sticky-nav-bar {
+    display:inline;
+    background-color:darkslategrey;
+    color:white;
+    position:fixed;
+    width: 100%;
+    z-index:1;
+}
+
+.wbdv-padding-nav-bar {
+    padding-top:100px;
+}
+
+.wbdv-module-cell {
+    background-color:darkgrey;
+    color:white;
+}
