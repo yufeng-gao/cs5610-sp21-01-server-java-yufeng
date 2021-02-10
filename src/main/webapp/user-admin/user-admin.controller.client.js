@@ -58,6 +58,11 @@
                 users[userIndex] = selectedUser
                 renderUsers(users)
             })
+        $updateBtn.removeAttr("id")
+        $usernameFld.val("")
+        $passwordFld.val("")
+        $firstNameFld.val("")
+        $lastNameFld.val("")
     }
 
     function renderUsers(users) {
