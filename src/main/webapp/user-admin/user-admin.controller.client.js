@@ -35,23 +35,23 @@
     function selectUser(event) {
         var $editBtn = jQuery(event.target)
         var userId = $editBtn.parents(".wbdv-actions").attr("id")
-        $updateBtn.attr("id", userId)
         var selectedUser = users.find(user => user._id === userId)
         $usernameFld.val(selectedUser.username)
         $passwordFld.val(selectedUser.password)
         $firstNameFld.val(selectedUser.firstName)
         $lastNameFld.val(selectedUser.lastName)
         $roleFld.val(selectedUser.role)
+        $updateBtn.attr("id", userId)
     }
 
-    function updateUser() {
+    function updateUser(event) {
         var userId = $updateBtn.attr("id")
         var selectedUser = users.find(user => user._id === userId)
-        selectedUser.username = usernameFld.val()
-        selectedUser.password = passwordFld.val()
-        selectedUser.firstName = firstNameFld.val()
-        selectedUser.lastName = lastNameFld.val()
-        selectedUser.role = roleFld.val()
+        selectedUser.username = $usernameFld.val()
+        selectedUser.password = $passwordFld.val()
+        selectedUser.firstName = $firstNameFld.val()
+        selectedUser.lastName = $lastNameFld.val()
+        selectedUser.role = $roleFld.val()
         userService.updateUser(userId, selectedUser)
             .then(function (status) {
                 var userIndex = users.findIndex(user => user._id === userId)
@@ -62,18 +62,22 @@
 
     function renderUsers(users) {
         $tbody.empty()
-        $userRowTemplate.removeClass("wbdv-hidden")
         for (var i = 0; i < users.length; i++) {
             var user = users[i]
             var userId = user._id
-            $userRowTemplate.find(".wbdv-username").val(user.username)
-            $userRowTemplate.find(".wbdv-first-name").val(user.firstName)
-            $userRowTemplate.find(".wbdv-last-name").val(user.lastName)
-            $userRowTemplate.find(".wbdv-role").val(user.role)
+            $userRowTemplate.find(".wbdv-username").text(user.username)
+            //following the html template, I didn't render the password value.
+            //It can be done here with similar one-line fashion.
+            //By introducing password class in the original template(html).
+            $userRowTemplate.find(".wbdv-first-name").text(user.firstName)
+            $userRowTemplate.find(".wbdv-last-name").text(user.lastName)
+            $userRowTemplate.find(".wbdv-role").text(user.role)
             $userRowTemplate.find(".wbdv-actions").attr("id", userId)
-            $tbody.prepend($userRowTemplate)
+            $('<div>').append($('#xxx').clone()).html()
+            $tbody.prepend(
+                `<tr class="wbdv-user">${$userRowTemplate.html()}</tr>
+              `)
         }
-        $userRowTemplate.addClass("wbdv-hidden")
         $(".wbdv-remove").click(deleteUser)
         $(".wbdv-edit").click(selectUser)
     }
