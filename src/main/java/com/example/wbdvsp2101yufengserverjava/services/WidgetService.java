@@ -21,7 +21,7 @@ public class WidgetService {
   }
 
   public List<Widget> findAllWidgets() {
-    return repository.findAllWidgets();
+    return (List<Widget>) repository.findAll();
   }
 
   public List<Widget> findWidgetsForTopic(String tid) {

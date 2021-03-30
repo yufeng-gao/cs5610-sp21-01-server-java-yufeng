@@ -11,9 +11,6 @@ import java.util.List;
 public interface WidgetRepository
   extends CrudRepository<Widget, Long> {
 
-  @Query("SELECT widget FROM Widget widget")
-  public List<Widget> findAllWidgets();
-
   @Query(value="SELECT * FROM widgets WHERE id=:wid", nativeQuery = true)
   public Widget findWidgetById(@Param("wid") Long widgetId);
 
