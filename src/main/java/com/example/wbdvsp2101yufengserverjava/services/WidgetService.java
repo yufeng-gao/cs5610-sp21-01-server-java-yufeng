@@ -61,6 +61,7 @@ public class WidgetService {
     if (widget.isOrdered() != null) {
       originalWidget.setOrdered(widget.isOrdered());
     }
+    originalWidget.setType(widget.getType());
     repository.save(originalWidget);
     return 1;
   }
