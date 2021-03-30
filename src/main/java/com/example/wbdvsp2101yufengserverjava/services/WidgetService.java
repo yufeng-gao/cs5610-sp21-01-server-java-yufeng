@@ -2,61 +2,72 @@
 package com.example.wbdvsp2101yufengserverjava.services;
 
 import com.example.wbdvsp2101yufengserverjava.models.Widget;
+import com.example.wbdvsp2101yufengserverjava.repositories.WidgetRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
 public class WidgetService {
-  private List<Widget> widgets = new ArrayList<Widget>();
+
+  @Autowired
+  WidgetRepository repository;
 
   public Widget createWidget(String tid, Widget widget) {
-    Long id = (new Date()).getTime();
-    widget.setId(id);
     widget.setTopicId(tid);
-    widgets.add(widget);
-    return widget;
+    return repository.save(widget);
   }
 
   public List<Widget> findAllWidgets() {
-    return widgets;
+    return repository.findAllWidgets();
   }
 
   public List<Widget> findWidgetsForTopic(String tid) {
-    List<Widget> ws = new ArrayList<Widget>();
-    for(Widget w: widgets) {
-      if(w.getTopicId().equals(tid)) {
-        ws.add(w);
-      }
-    }
-    return ws;
+    return repository.findWidgetsForTopic(tid);
   }
 
   public int updateWidget(Long wid, Widget widget) {
-    for(int i = 0; i < widgets.size(); i++) {
-      Widget w = widgets.get(i);
-      if(w.getId().equals(wid)) {
-        widgets.set(i, widget);
-        return 1;
-      }
+    Widget originalWidget = findWidgetById(wid);
+    //TODO: copy all the other fields testing for null
+    if (widget.getWidgetOrder() != null) {
+      originalWidget.setWidgetOrder(widget.getWidgetOrder());
     }
-    return 0;
+    if (widget.getText() != null) {
+      originalWidget.setText(widget.getText());
+    }
+    if (widget.getSrc() != null) {
+      originalWidget.setSrc(widget.getSrc());
+    }
+    if (widget.getSize() != null) {
+      originalWidget.setSize(widget.getSize());
+    }
+    if (widget.getWidth() != null) {
+      originalWidget.setWidth(widget.getWidth());
+    }
+    if (widget.getHeight() != null) {
+      originalWidget.setHeight(widget.getHeight());
+    }
+    if (widget.getCssClass() != null) {
+      originalWidget.setCssClass(widget.getCssClass());
+    }
+    if (widget.getStyle() != null) {
+      originalWidget.setStyle(widget.getStyle());
+    }
+    if (widget.getValue() != null) {
+      originalWidget.setValue(widget.getValue());
+    }
+    repository.save(originalWidget);
+    return 1;
+  }
+
+  public Widget findWidgetById(Long id) {
+    return repository.findWidgetById(id);
   }
 
   public int deleteWidget(Long wid) {
-    int index = -1;
-    for(int i = 0; i < widgets.size(); i++) {
-      Widget w = widgets.get(i);
-      if(w.getId().equals(wid)) {
-        index = i;
-      }
-    }
-    if(index >= 0) {
-      widgets.remove(index);
-      return 1;
-    }
-    return 0;
+    repository.deleteById(wid);
+    return 1;
   }
 }

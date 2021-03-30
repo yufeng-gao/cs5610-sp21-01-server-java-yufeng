@@ -1,7 +1,20 @@
 package com.example.wbdvsp2101yufengserverjava.models;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="widgets")
 public class Widget {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   private String type;
   private Integer widgetOrder;
   private String text;
@@ -124,4 +137,6 @@ public class Widget {
   public void setTopicId(String topicId) {
     this.topicId = topicId;
   }
+
+  public Widget() {}
 }
